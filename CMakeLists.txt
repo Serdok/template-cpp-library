@@ -26,13 +26,14 @@ add_subdirectory(src/)
 # Define install instructions if requested
 if (INSTALL_TARGETS)
     if (DEFINED CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-        set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install/" CACHE PATH "Where the library will be installed to" FORCE)
+        message(NOTICE "CMAKE_INSTALL_PREFIX is not set. It will be set to ${PROJECT_BINARY_DIR}/install")
+        set(CMAKE_INSTALL_PREFIX  "${PROJECT_BINARY_DIR}/install/" CACHE PATH "Where the library will be installed to" FORCE)
     endif()
 
     install(TARGETS ${PROJECT_NAME}
             EXPORT "${PROJECT_NAME}Targets"
-            PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
-            INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+            PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}"
+            INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
             )
 
     install(EXPORT "${PROJECT_NAME}Targets"
