@@ -3,15 +3,15 @@ add_library(${namespace}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 # Set target sources
 set(LIB_HEADERS
-        "../include/template_cpp_library/library.h"
+        "${PROJECT_SOURCE_DIR}/include/template_cpp_library/library.h"
         )
 target_sources(${PROJECT_NAME} PRIVATE library.cpp)
 target_include_directories(${PROJECT_NAME}
         PRIVATE
-        ${PROJECT_SOURCE_DIR}/src
+            ${PROJECT_SOURCE_DIR}/src
         PUBLIC
-        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+            $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
         )
 
 # Link external libraries
